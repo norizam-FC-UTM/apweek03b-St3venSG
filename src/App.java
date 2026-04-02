@@ -57,6 +57,9 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
+        BankAccount[] mylist;
+        mylist = new BankAccount[10];
+
         System.out.println("===== BANK ACCOUNT SYSTEM =====");
 
         // Input
@@ -67,33 +70,54 @@ public class App {
         double initialDeposit = sc.nextDouble();
 
         // Create account
-        BankAccount acc1 = new BankAccount(name, initialDeposit);
+        mylist[1] = new BankAccount(name, initialDeposit);
 
         System.out.println("\nAccount created successfully.");
-        acc1.printObjectState();
+        mylist[1].printObjectState();
 
         // Deposit
         System.out.println("----- DEPOSIT -----");
         System.out.print("Enter deposit amount: RM ");
         double depositAmount = sc.nextDouble();
-        acc1.deposit(depositAmount);
-        acc1.printObjectState();
+        mylist[1].deposit(depositAmount);
+        mylist[1].printObjectState();
 
         // Withdraw
         System.out.println("----- WITHDRAW -----");
         System.out.print("Enter withdrawal amount: RM ");
         double withdrawAmount = sc.nextDouble();
-        acc1.withdraw(withdrawAmount);
-        acc1.printObjectState();
+        mylist[1].withdraw(withdrawAmount);
+        mylist[1].printObjectState();
+
+        mylist[0] = new BankAccount("budi", 100);
+        mylist[2] = new BankAccount("Andi", 200);
+        
+        System.out.println(mylist[1]);
+
+
 
         // Dividend
         System.out.println("----- YEAR-END DIVIDEND -----");
         System.out.print("Enter dividend rate (example 0.05 for 5%): ");
         double rate = sc.nextDouble();
-        acc1.setDividendRate(rate);
-        acc1.applyDividend();
+         for (int i = 0; i < 3; i++){
+            mylist[i].setDividendRate(rate);
+            mylist[i].applyDividend();
+        }
+        for (int i = 0; i < 3; i++){
+            mylist[i].printObjectState();
+        }
 
-        acc1.printObjectState();
+        // highest balance
+        BankAccount highest;
+        highest = mylist[0]; 
+       for (int i = 1; i < 3; i++){
+            if(highest.balance < mylist[i].balance){
+                highest = mylist[i];
+            }
+        }
+        System.out.print("The highest is: ");
+        highest.printObjectState();
 
         System.out.println("===== END OF PROGRAM =====");
 
